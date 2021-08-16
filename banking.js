@@ -30,15 +30,23 @@ const depositBtn = document
   .addEventListener("click", function () {
     //call getInputValue
     const PrevDepositInputFieldValue = getInputValue("deposit-input");
-    //update deposit value
-    updateValue("deposit-value", PrevDepositInputFieldValue);
-    //update balance
-    updateBalance(PrevDepositInputFieldValue, true);
-    //warning part
-    document.getElementById("confrim-dipo").innerText = "deposit successful";
-    setTimeout(function () {
-      document.getElementById("confrim-dipo").style.display = "none";
-    }, 1000);
+    if (PrevDepositInputFieldValue > 0) {
+      //update deposit value
+      updateValue("deposit-value", PrevDepositInputFieldValue);
+      //update balance
+      updateBalance(PrevDepositInputFieldValue, true);
+      //warning part
+      document.getElementById("confrim-dipo").innerText = "deposit successful";
+      setTimeout(function () {
+        document.getElementById("confrim-dipo").style.display = "none";
+      }, 1000);
+    } else {
+      document.getElementById("invalid1").innerText =
+        "invalid please input a valid number";
+      setTimeout(function () {
+        document.getElementById("invalid1").style.display = "none";
+      }, 1000);
+    }
   });
 
 // withDraw part
@@ -48,13 +56,22 @@ const withdrawBtn = document
   .addEventListener("click", function () {
     //call getInputValue
     const PrevDepositInputFieldValue = getInputValue("withdraw-input");
-    //update withDraw value
-    updateValue("withDraw-value", PrevDepositInputFieldValue);
-    //update balance
-    updateBalance(PrevDepositInputFieldValue, false);
-    //warning part
-    document.getElementById("withdraw-dipo").innerText = "withdraw successful";
-    setTimeout(function () {
-      document.getElementById("withdraw-dipo").style.display = "none";
-    }, 1000);
+    if (PrevDepositInputFieldValue > 0) {
+      //update withDraw value
+      updateValue("withDraw-value", PrevDepositInputFieldValue);
+      //update balance
+      updateBalance(PrevDepositInputFieldValue, false);
+      //warning part
+      document.getElementById("withdraw-dipo").innerText =
+        "withdraw successful";
+      setTimeout(function () {
+        document.getElementById("withdraw-dipo").style.display = "none";
+      }, 1000);
+    } else {
+      document.getElementById("invalid2").innerText =
+        "invalid please input a valid number";
+      setTimeout(function () {
+        document.getElementById("invalid2").style.display = "none";
+      }, 1000);
+    }
   });
