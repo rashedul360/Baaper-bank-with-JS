@@ -1,0 +1,15 @@
+#user-email {
+  width: 100%;
+}
+#user-pass {
+  width: 100%;
+}
+@media only screen and (max-width: 662px) {
+  .display-control {
+    display: block;
+    margin-top: 20px;
+  }
+  .display-control div {
+    margin-top: 1rem;
+  }
+}
