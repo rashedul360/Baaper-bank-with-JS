@@ -11,9 +11,16 @@ function updateValue(totalFiledID, PrevInputFieldValue) {
   const updateFieldValue = parseFloat(updateFieldText.innerText);
   updateFieldText.innerText = PrevInputFieldValue + updateFieldValue;
 }
-function updateBalance(PrevDepositInputFieldValue, isAdd) {
+
+function getCurrentBalance() {
   const balanceUpdateText = document.getElementById("Balance-value");
   const balanceUpdateValue = parseFloat(balanceUpdateText.innerText);
+  return balanceUpdateValue;
+}
+function updateBalance(PrevDepositInputFieldValue, isAdd) {
+  const balanceUpdateText = document.getElementById("Balance-value");
+  // const balanceUpdateValue = parseFloat(balanceUpdateText.innerText);
+  const balanceUpdateValue = getCurrentBalance();
   if (isAdd === true) {
     const addedBalanced = balanceUpdateValue + PrevDepositInputFieldValue;
     balanceUpdateText.innerText = addedBalanced;
@@ -40,7 +47,11 @@ const depositBtn = document
       setTimeout(function () {
         document.getElementById("confrim-dipo").style.display = "none";
       }, 1000);
-    } else {
+    }
+    // else if (PrevDepositInputFieldValue < ) {
+    //   console.log("dsfsd");
+    // }
+    else {
       document.getElementById("invalid1").innerText =
         "invalid please input a valid number";
       setTimeout(function () {
@@ -56,7 +67,11 @@ const withdrawBtn = document
   .addEventListener("click", function () {
     //call getInputValue
     const PrevDepositInputFieldValue = getInputValue("withdraw-input");
-    if (PrevDepositInputFieldValue > 0) {
+    const currentBalance = getCurrentBalance();
+    if (
+      PrevDepositInputFieldValue > 0 &&
+      PrevDepositInputFieldValue <= currentBalance
+    ) {
       //update withDraw value
       updateValue("withDraw-value", PrevDepositInputFieldValue);
       //update balance
